@@ -1,11 +1,49 @@
 <style>
+	#javascript-editor { width: 500px; height: 500px;}
 </style>
 
-<div>hello</div>
+<div id='javascript-editor' class="{{class}}" style="{{style}}">hello</div>
 
 <script>
 	import Ractive from 'ractive';
+
+
+	//import * as ace from 'brace';
+	//import 'brace/mode/javascript';
+	//import 'brace/theme/monokai';
+
+	//var Ace = require('ace-builds/src-min-noconflict/ace');
+	//import { Ace } from "ace-builds/src-min-noconflict/ace";
+	import 'ace-builds/src-min-noconflict/ace' // Load Ace Editor
+	import 'ace-builds/src-min-noconflict/theme-monokai'
+	import 'ace-builds/src-min-noconflict/mode-javascript'
+
+	//import "ace-builds/webpack-resolver";
+
+
+	//require("ace-builds/src-min-noconflict/mode-javascript")
+	//var theme_monokai = require('ace-builds/src-min-noconflict/theme-monokai');
+
+
+
 	export default Ractive.extend({
 		template: $TEMPLATE,
+		on: {
+			init: function() {
+
+			},
+			complete: function() {
+				var editor = ace.edit('javascript-editor', {
+					mode: "ace/mode/javascript",
+					theme: "ace/theme/monokai",
+					maxLines: 50,
+					minLines: 10,
+					fontSize: 18
+				})
+				editor.getSession().setOption("useWorker", false);
+				//editor.getSession().setMode('ace/mode/javascript');
+				//editor.setTheme('ace/theme/monokai');
+			}
+		}
 	})
 </script>
