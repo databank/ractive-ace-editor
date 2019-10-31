@@ -1,8 +1,9 @@
 <style>
 	#javascript-editor { width: 500px; height: 500px;}
+	.zzz {width: 500px; height: 500px;}
 </style>
 
-<div id='javascript-editor' class="{{class}}" style="{{style}}">hello</div>
+<div id='javascript-editor' class="{{class}}" style="{{style}}">{{value}}</div>
 
 <script>
 	import Ractive from 'ractive';
@@ -28,21 +29,37 @@
 
 	export default Ractive.extend({
 		template: $TEMPLATE,
+		css: $CSS,
 		on: {
 			init: function() {
 
 			},
 			complete: function() {
+				var ractive=this;
 				var editor = ace.edit('javascript-editor', {
 					mode: "ace/mode/javascript",
 					theme: "ace/theme/monokai",
-					maxLines: 50,
-					minLines: 10,
-					fontSize: 18
+					//maxLines: 50,
+					//minLines: 10,
+					fontSize: 15
 				})
 				editor.getSession().setOption("useWorker", false);
 				//editor.getSession().setMode('ace/mode/javascript');
 				//editor.setTheme('ace/theme/monokai');
+				//editor.resize();
+
+
+				editor.getSession().on('change', function() {
+					ractive.set({value: editor.getSession().getValue()})
+				});
+
+				this.observe('value', function( n, o, kp ) {
+					if (n !== editor.getSession().getValue()) {
+						editor.setValue(n);
+						editor.clearSelection();
+					}
+				})
+
 			}
 		}
 	})

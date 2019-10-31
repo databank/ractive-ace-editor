@@ -22,14 +22,26 @@
 			<table>
 				<tr>
 					<td>
-						<ace style="width: 500px; height: 500px;" class="zzz" />
+						<ace style="width: 500px; height: 500px;" class="zzz" value={{value}} />
 					</td>
 					<td>
-						<textarea style="width: 500px; height: 500px;"></textarea>
+						<textarea style="width: 500px; height: 500px;" value={{value}}></textarea>
 					</td>
 				</tr>
 			</table>
-			`
+			`,
+			data: function() {
+				return {
+					value: `
+var my_str=window.prompt("Enter your name");
+var i=my_str.length;
+i=i-1;
+for (var x = i; x >=0; x--) {
+	document.write(my_str.charAt(x));
+}
+					`
+				}
+			}
 		})
 	</script>
 </html>

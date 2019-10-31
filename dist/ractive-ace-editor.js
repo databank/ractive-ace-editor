@@ -194,20 +194,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (ractive__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
-	template: { v: 4, t: [{ t: 7, e: "div", m: [{ n: "id", f: "javascript-editor", t: 13, g: 1 }, { n: "class", f: [{ t: 2, r: "class" }], t: 13 }, { n: "style", f: [{ t: 2, r: "style" }], t: 13 }], f: ["hello"] }] },
+	template: { v: 4, t: [{ t: 7, e: "div", m: [{ n: "id", f: "javascript-editor", t: 13, g: 1 }, { n: "class", f: [{ t: 2, r: "class" }], t: 13 }, { n: "style", f: [{ t: 2, r: "style" }], t: 13 }], f: [{ t: 2, r: "value" }] }] },
+	css: " #javascript-editor { width: 500px; height: 500px;} .zzz {width: 500px; height: 500px;}",
 	on: {
 		init: function () {},
 		complete: function () {
+			var ractive = this;
 			var editor = ace.edit('javascript-editor', {
 				mode: "ace/mode/javascript",
 				theme: "ace/theme/monokai",
-				maxLines: 50,
-				minLines: 10,
-				fontSize: 18
+				//maxLines: 50,
+				//minLines: 10,
+				fontSize: 15
 			});
 			editor.getSession().setOption("useWorker", false);
 			//editor.getSession().setMode('ace/mode/javascript');
 			//editor.setTheme('ace/theme/monokai');
+			//editor.resize();
+
+
+			editor.getSession().on('change', function () {
+				ractive.set({ value: editor.getSession().getValue() });
+			});
+
+			this.observe('value', function (n, o, kp) {
+				if (n !== editor.getSession().getValue()) {
+					editor.setValue(n);
+					editor.clearSelection();
+				}
+			});
 		}
 	}
 }));
