@@ -44,6 +44,16 @@
 						editor.clearSelection();
 					}
 				})
+
+				this.observe('font-size', function(n,o,kp) {
+					console.log('should change font size to ', n )
+					editor
+						//.getSession()
+						.setFontSize( parseInt(n) )
+				})
+
+
+
 				this.set('editor', editor )
 
 			},

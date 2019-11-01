@@ -18,35 +18,47 @@
 				ace: window['ractive-ace-editor']
 			},
 			template: `
+				<div style="position: absolute;width: 280px;left: 0px;top: 0px;bottom: 0px;background-color: #0e62a5;padding: 10px;box-sizing: border-box;">
 
-			<table>
-				<tr>
-					<td style="width: 500px; height: 500px;">
+
+					<h3>ractive-ace</h3>
+
+					<div>
+						<select value={{font_size}}>
+							<option value="12">12px</option>
+							<option value="13">13px</option>
+							<option value="14">14px</option>
+							<option value="15">15px</option>
+							<option value="16">16px</option>
+						</select>
+					</div>
+					<a on-click="show">Toggle Show/Hide editor</a>
+				</div>
+				<div style="position: absolute;top: 0px;left: 280px; bottom: 0px; width: calc(50% - 140px)">
+
 						{{#if show}}
 							<ace
-								style="width: 500px; height: 500px;"
+								style="position: absolute;top: 0px;left: 0px;right: 0px;bottom: 0px;"
 								class=""
 
-								font-size={{13}}
+								font-size={{font_size}}
 								show-invisibles={{true}}
 
 								value={{value}} />
 
 						{{/if}}
-					</td>
-					<td>
-						<textarea style="width: 500px; height: 500px;" value={{value}}></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td><a on-click="show" href="#">Toggle Show/Hide editor</a></td>
-					<td></td>
-				</tr>
-			</table>
+
+				</div>
+				<div style="position: absolute;top: 0px;right: 0px; bottom: 0px; width: calc(50% - 140px);">
+					<textarea style="position: absolute;width: 280px;left: 0px;top: 0px;bottom: 0px;" value={{value}}></textarea>
+				</div>
+
+
 			`,
 			data: function() {
 				return {
 					show: true,
+					font_size: 13,
 					value: `
 	function foo(items, nada) {
 		for (var i=0; i<items.length; i++) {

@@ -187,6 +187,14 @@ __webpack_require__.r(__webpack_exports__);
 					editor.clearSelection();
 				}
 			});
+
+			this.observe('font-size', function (n, o, kp) {
+				console.log('should change font size to ', n);
+				editor
+				//.getSession()
+				.setFontSize(parseInt(n));
+			});
+
 			this.set('editor', editor);
 		},
 		teardown: function () {
