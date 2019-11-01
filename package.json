@@ -1,6 +1,6 @@
 {
 	"name": "@databank/ractive-ace-editor",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ractivejs component for ace editor",
 	"main": "dist/ractive-ace-editor.min.js",
 	"scripts": {
