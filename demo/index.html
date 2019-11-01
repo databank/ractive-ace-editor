@@ -41,6 +41,10 @@
 					</div>
 
 					<div style="padding: 5px;">
+						<input type="checkbox" checked={{show_print_margin}} /> Show Print Margin
+					</div>
+
+					<div style="padding: 5px;">
 						<input type="checkbox" checked={{show_indent_guides}} /> Indent Guides
 					</div>
 
@@ -68,6 +72,7 @@
 								font-size={{font_size}}
 								show-invisibles={{show_invisibles}}
 								show-indent-guides={{show_indent_guides}}
+								show-print-margin={{show_print_margin}}
 								read-only={{read_only}}
 
 								value={{value}} />
@@ -87,6 +92,7 @@
 					font_size: 13,
 					show_invisibles: false,
 					show_indent_guides: false,
+					show_print_margin: false,
 					read_only: false,
 					value: `
 	function foo(items, nada) {

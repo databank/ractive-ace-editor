@@ -33,6 +33,7 @@
 					showInvisibles: this.get('show-invisibles') || false,
 					displayIndentGuides: this.get('show-indent-guides') || false,
 					readOnly: this.get('read-only') || false,
+					showPrintMargin: this.get('show-print-margin') || false,
 					tabSize: 4,
 					useSoftTabs: false,
 					useWorker: false,
@@ -61,6 +62,10 @@
 				this.observe('show-indent-guides', function(n,o,kp) {
 					editor.setDisplayIndentGuides( n )
 				})
+				this.observe('show-print-margin', function(n,o,kp) {
+					editor.setShowPrintMargin( n )
+				})
+
 
 				this.observe('read-only', function(n,o,kp) {
 					editor.setReadOnly( n )

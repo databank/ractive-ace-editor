@@ -177,6 +177,7 @@ __webpack_require__.r(__webpack_exports__);
 				showInvisibles: this.get('show-invisibles') || false,
 				displayIndentGuides: this.get('show-indent-guides') || false,
 				readOnly: this.get('read-only') || false,
+				showPrintMargin: this.get('show-print-margin') || false,
 				tabSize: 4,
 				useSoftTabs: false,
 				useWorker: false
@@ -204,6 +205,9 @@ __webpack_require__.r(__webpack_exports__);
 			});
 			this.observe('show-indent-guides', function (n, o, kp) {
 				editor.setDisplayIndentGuides(n);
+			});
+			this.observe('show-print-margin', function (n, o, kp) {
+				editor.setShowPrintMargin(n);
 			});
 
 			this.observe('read-only', function (n, o, kp) {
