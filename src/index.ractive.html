@@ -17,6 +17,9 @@
 	export default Ractive.extend({
 		template: $TEMPLATE,
 		css: $CSS,
+		resize: function() {
+			this.fire('resize')
+		},
 		on: {
 			init: function() {
 
@@ -60,13 +63,12 @@
 				})
 
 				this.observe('read-only', function(n,o,kp) {
-					console.log('should change read-only to ', n )
-					editor
-						//.getSession()
-						.setReadOnly( n )
+					editor.setReadOnly( n )
 				})
 
-
+				this.on('resize', function() {
+					editor.resize()
+				})
 
 				this.set('editor', editor )
 

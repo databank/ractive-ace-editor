@@ -6,6 +6,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/1.3.8/ractive.min.js"></script>
 
 		<script src="../dist/ractive-ace-editor.js"></script>
+		<style>
+			body {font-family: sans-serif;}
+		</style>
 	</head>
 	<body>
 	</body>
@@ -45,7 +48,15 @@
 						<input type="checkbox" checked={{read_only}} /> Read Only
 					</div>
 
-					<a on-click="show">Toggle Show/Hide editor</a>
+					<div style="padding: 5px;">
+						<a on-click="show"   style="cursor: pointer;">Toggle Show/Hide editor</a>
+					</div>
+
+					<div style="padding: 5px;">
+						<a on-click="resize" style="cursor: pointer;">resize()</a>
+					</div>
+
+
 				</div>
 				<div style="position: absolute;top: 0px;left: 280px; bottom: 0px; width: calc(50% - 140px)">
 
@@ -89,6 +100,9 @@
 			on: {
 				show: function() {
 					this.toggle('show')
+				},
+				resize: function() {
+					this.findComponent('ace').resize()
 				}
 			}
 		})
