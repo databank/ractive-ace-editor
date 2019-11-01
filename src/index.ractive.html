@@ -29,6 +29,7 @@
 					fontSize: this.get('font-size') || 14,
 					showInvisibles: this.get('show-invisibles') || false,
 					displayIndentGuides: this.get('show-indent-guides') || false,
+					readOnly: this.get('read-only') || false,
 					tabSize: 4,
 					useSoftTabs: false,
 					useWorker: false,
@@ -55,11 +56,17 @@
 					editor.setShowInvisibles( n )
 				})
 				this.observe('show-indent-guides', function(n,o,kp) {
-					console.log('should change show-invisibles to ', n )
+					editor.setDisplayIndentGuides( n )
+				})
+
+				this.observe('read-only', function(n,o,kp) {
+					console.log('should change read-only to ', n )
 					editor
 						//.getSession()
-						.setDisplayIndentGuides( n )
+						.setReadOnly( n )
 				})
+
+
 
 				this.set('editor', editor )
 
