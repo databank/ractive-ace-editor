@@ -22,23 +22,31 @@
 			<table>
 				<tr>
 					<td>
-						<ace
-							style="width: 500px; height: 500px;"
-							class=""
+						{{#if show}}
+							<ace
+								style="width: 500px; height: 500px;"
+								class=""
 
-							font-size={{13}}
-							show-invisibles={{true}}
+								font-size={{13}}
+								show-invisibles={{true}}
 
-							value={{value}} />
+								value={{value}} />
+
+						{{/if}}
 					</td>
 					<td>
 						<textarea style="width: 500px; height: 500px;" value={{value}}></textarea>
 					</td>
 				</tr>
+				<tr>
+					<td><a on-click="show">Toggle Show/Hide</a></td>
+					<td></td>
+				</tr>
 			</table>
 			`,
 			data: function() {
 				return {
+					show: true,
 					value: `
 	function foo(items, nada) {
 		for (var i=0; i<items.length; i++) {
@@ -46,6 +54,11 @@
 		}
 	}
 `
+				}
+			},
+			on: {
+				show: function() {
+					this.toggle('show')
 				}
 			}
 		})
