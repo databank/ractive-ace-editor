@@ -18,12 +18,13 @@
 				ace: window['ractive-ace-editor']
 			},
 			template: `
-				<div style="position: absolute;width: 280px;left: 0px;top: 0px;bottom: 0px;background-color: #0e62a5;padding: 10px;box-sizing: border-box;">
+				<div style="position: absolute;width: 280px;left: 0px;top: 0px;bottom: 0px;background-color: #0e62a5;padding: 10px;box-sizing: border-box; color: #fff;">
 
 
 					<h3>ractive-ace</h3>
 
-					<div>
+					<div style="padding: 5px;">
+						Font Size
 						<select value={{font_size}}>
 							<option value="12">12px</option>
 							<option value="13">13px</option>
@@ -32,6 +33,16 @@
 							<option value="16">16px</option>
 						</select>
 					</div>
+					<div style="padding: 5px;">
+						<input type="checkbox" checked={{show_invisibles}} /> Show Invisibles
+					</div>
+
+					<div style="padding: 5px;">
+						<input type="checkbox" checked={{show_indent_guides}} /> Indent Guides
+					</div>
+
+
+
 					<a on-click="show">Toggle Show/Hide editor</a>
 				</div>
 				<div style="position: absolute;top: 0px;left: 280px; bottom: 0px; width: calc(50% - 140px)">
@@ -42,7 +53,8 @@
 								class=""
 
 								font-size={{font_size}}
-								show-invisibles={{true}}
+								show-invisibles={{show_invisibles}}
+								show-indent-guides={{show_indent_guides}}
 
 								value={{value}} />
 
@@ -59,6 +71,8 @@
 				return {
 					show: true,
 					font_size: 13,
+					show_invisibles: false,
+					show_indent_guides: false,
 					value: `
 	function foo(items, nada) {
 		for (var i=0; i<items.length; i++) {

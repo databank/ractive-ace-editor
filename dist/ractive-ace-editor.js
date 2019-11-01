@@ -172,10 +172,13 @@ __webpack_require__.r(__webpack_exports__);
 				theme: "ace/theme/iplastic", // IPlastic,dawn,
 				fontSize: this.get('font-size') || 14,
 				showInvisibles: this.get('show-invisibles') || false,
+				displayIndentGuides: this.get('show-indent-guides') || false,
 				tabSize: 4,
 				useSoftTabs: false,
 				useWorker: false
 			});
+
+			//editor.setDisplayIndentGuides(false)
 
 			editor.getSession().on('change', function () {
 				ractive.set({ value: editor.getSession().getValue() });
@@ -189,10 +192,17 @@ __webpack_require__.r(__webpack_exports__);
 			});
 
 			this.observe('font-size', function (n, o, kp) {
-				console.log('should change font size to ', n);
+				editor.setFontSize(parseInt(n));
+			});
+			this.observe('show-invisibles', function (n, o, kp) {
+
+				editor.setShowInvisibles(n);
+			});
+			this.observe('show-indent-guides', function (n, o, kp) {
+				console.log('should change show-invisibles to ', n);
 				editor
 				//.getSession()
-				.setFontSize(parseInt(n));
+				.setDisplayIndentGuides(n);
 			});
 
 			this.set('editor', editor);
